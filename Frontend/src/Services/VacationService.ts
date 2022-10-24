@@ -36,8 +36,6 @@ class VacationService {
 
         vacations = vacations.filter(el => el.isFollowed);
 
-        console.log(vacations);
-
         // Return vacations:
         return vacations;
     }
