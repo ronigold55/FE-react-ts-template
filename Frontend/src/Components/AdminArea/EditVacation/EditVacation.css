@@ -1,6 +1,6 @@
 .EditVacation > form {
     width: 250px;
-    height: 500px;
+    height: 510px;
     text-align: left;
     display: inline-block;
     margin: 40px 0 0 0;
@@ -12,8 +12,16 @@
 .EditVacation .EditInput {
     border: 1px solid gray;
     border-radius: 5px;
-    margin: 8px;
+    margin-bottom: 8px;
     height: 30px;
+    width: 220px;
+}
+
+.EditVacation .EditTextarea {
+    border: 1px solid gray;
+    border-radius: 5px;
+    margin-bottom: 8px;
+    height: 70px;
     width: 220px;
 }
 
@@ -29,6 +37,8 @@ label {
     border: 1px solid rebeccapurple;
     color: rebeccapurple;
     align-items: center;
+    margin-top: 15px;
+    margin-bottom: 10px;
 }
 
 .EditVacation h2 {

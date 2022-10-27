@@ -1,6 +1,6 @@
 .AddVacation > form {
     width: 250px;
-    height: 500px;
+    height: 510px;
     text-align: left;
     display: inline-block;
     margin: 40px 0 0 0;
@@ -12,8 +12,16 @@
 .AddVacation .AddInput {
     border: 1px solid gray;
     border-radius: 5px;
-    margin: 8px;
+    margin-bottom: 8px;
     height: 30px;
+    width: 220px;
+}
+
+.AddVacation .AddTextarea {
+    border: 1px solid gray;
+    border-radius: 5px;
+    margin-bottom: 8px;
+    height: 70px;
     width: 220px;
 }
 
@@ -29,6 +37,8 @@ label {
     border: 1px solid rebeccapurple;
     color: rebeccapurple;
     align-items: center;
+    margin-top: 15px;
+    margin-bottom: 10px;
 }
 
 .AddVacation h2 {
@@ -39,7 +49,15 @@ label {
 
 .AddVacation .SpanMessage {
     color: red;
-    margin: 15px 25px;
+    margin: 15px 40px;
+    position: absolute;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+
+.AddVacation .SpanImageMessage {
+    color: red;
+    margin-left: 265px;
     position: absolute;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }

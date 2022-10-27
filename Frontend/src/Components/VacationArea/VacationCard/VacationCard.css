@@ -37,13 +37,15 @@
     width: 250px;
     height: 180px;
     border-radius: 10px;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
 }
 
 .VacationCard .Details {
     min-height: 180px;
     grid-column: auto;
     grid-row: 45%;
-
 }
 
 .VacationCard p {
@@ -137,4 +139,13 @@
 
 .VacationCard .VacationCard .Unfollow {
     background-color: blueviolet;
+}
+
+.VacationCard .DivFollowCount{
+    position: relative;
+    display: inline-block;
+    width: 80px;
+    height: 24px;
+    border-radius: 34px;
+    background-color: #ccc;
 }

@@ -18,7 +18,7 @@ function Logout(props: LogoutProps): JSX.Element {
         try{
             authService.logout();
             vacationService.resetVacations();
-            if(!props.off) notifyService.success("Bye bye...");
+            if(!props.off) notifyService.success("Bye bye");
             navigate("/login")
         }
         catch(err:any) {

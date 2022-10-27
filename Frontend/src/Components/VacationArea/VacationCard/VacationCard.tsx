@@ -13,6 +13,7 @@ import "./VacationCard.css";
 
 interface VacationCardProps {
     vacation: VacationModel
+    expired?: boolean;
 }
 
 function VacationCard(props: VacationCardProps): JSX.Element {
@@ -96,10 +97,9 @@ function VacationCard(props: VacationCardProps): JSX.Element {
                                 <input type="checkbox" checked={vacation.isFollowed} onChange={addOrRemoveFollow} className={vacation.isFollowed ? "Unfollow" : "Follow"} />
                                 <span className={`Slider Round ${vacation.isFollowed ? "Unfollow" : "Follow"}`}>{vacation.isFollowed ? "Unfollow" : "Follow"}</span>
                             </label>
-                            <label className="Switch">
-                                <input type="checkbox" />
-                                <span className="TextCountFollow Slider Round">{vacation.followersCount}</span>
-                            </label>
+                            <div className="DivFollowCount">
+                                <span className="TextCountFollow">{vacation.followersCount}</span>
+                            </div>
                         </div>
                     </>}
 

@@ -11,14 +11,9 @@ import Checkbox from '@mui/material/Checkbox';
 import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
 import Favorite from '@mui/icons-material/Favorite';
 import Pagination from '@mui/material/Pagination';
-import useVerifyAdmin from "../../../Utils/useVerifyAdmin";
 import "./VacationList.css";
-import CardTest from "../VacationCard/cardtest";
-
 
 function VacationList(): JSX.Element {
-
-    // useVerifyAdmin();
 
     const navigate = useNavigate();
     const [vacations, setVacations] = useState<VacationModel[]>([]);
@@ -87,9 +82,10 @@ function VacationList(): JSX.Element {
             
             {checked && filterMyVacations.slice((page - 1) * totalItemsPerPage, page * totalItemsPerPage).map(v => { return (<VacationCard key={v.vacationId} vacation={v} />) })}
             {!checked && vacations.slice((page - 1) * totalItemsPerPage, page * totalItemsPerPage).map(vac => { return (<VacationCard  key={vac.vacationId} vacation={vac} />) })}
-            {/* {vacations.map(vac => (<CardTest  key={vac.vacationId} vacation={vac} />) ) } */}
-            <Pagination className="Pagination" count={numOfPage} page={page} onChange={handleChange} defaultPage={1} color="secondary" size="large" />
-
+       
+            <div className="pagin">
+            <Pagination count={numOfPage} page={page} onChange={handleChange} defaultPage={1} color="secondary" size="large" />
+            </div>
         </div>
     );
 }

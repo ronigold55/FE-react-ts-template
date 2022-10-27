@@ -60,7 +60,7 @@ function AddVacation(): JSX.Element {
                 <span className="SpanMessage">{formState.errors.destination?.message}</span>
 
                 <label>Description:</label>
-                <input type="text" className="AddInput" {...register("description", {
+                <textarea maxLength={300} className="AddTextarea" {...register("description", { 
                     required: {value: true, message: "Missing Description"},
                     minLength: { value: 2, message: "Description must be minimum 5 chars" },
                     maxLength: { value: 100, message: "Description can't exceed 300 chars"}
@@ -82,7 +82,7 @@ function AddVacation(): JSX.Element {
                 <span className="SpanMessage">{departureDateError}</span>
 
                 <label>Price:</label>
-                <input type="number" className="AddInput" {...register("price", {
+                <input type="number" step="0.01" className="AddInput" {...register("price", {
                     required: { value: true, message: "Missing price" },
                     min: { value: 0, message: "Price can't be negative" },
                     max: { value: 10000, message: "Price can't exceed 10,000" },
@@ -90,7 +90,10 @@ function AddVacation(): JSX.Element {
                 <span className="SpanMessage">{formState.errors.price?.message}</span>
 
                 <label>Image: </label>
-                <input type="file" accept="image/*" {...register("image")} />
+                <input type="file" accept="image/*" {...register("image", {
+                    required: { value: true, message: "Missing image" },
+                })} />
+                <span className="SpanImageMessage">{formState.errors.image?.message}</span>
 
                 <Button type="submit" className="BtnAdd" startIcon={<AddCircleIcon/>}>Add</Button>
 

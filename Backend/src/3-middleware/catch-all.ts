@@ -11,7 +11,7 @@ function catchAll(err: any, request: Request, response: Response, next: NextFunc
     const statusCode = err.status ? err.status : 500;
 
     // Return error to frontend: 
-    response.status(statusCode).send(err.message);
+    response.status(statusCode).send("You can be wrong !");
 }
 
 export default catchAll;

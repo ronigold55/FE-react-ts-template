@@ -32,12 +32,16 @@ function EditVacation(): JSX.Element {
         const departureDate = new Date(vacation.departureDate) 
         departureDate.setDate(departureDate.getDate() + 1);
         const departureString = departureDate.toISOString();
+
+        console.log(vacation.arrivalDate)
     
         setValue("vacationId", vacation.vacationId);
         setValue("destination", vacation.destination);
         setValue("description", vacation.description);
         setValue("arrivalDate", arrivalString.substring(0, 10));
         setValue("departureDate", departureString.substring(0, 10));
+        setValue("arrivalDate", vacation.arrivalDate);
+        setValue("departureDate", vacation.departureDate);
         setValue("price", vacation.price);
         setValue("followersCount", vacation.followersCount);
         setValue("isFollowed", vacation.isFollowed);
@@ -85,7 +89,7 @@ function EditVacation(): JSX.Element {
                 <span className="SpanMessage">{formState.errors.destination?.message}</span>
 
                 <label>Description:</label>
-                <input type="text" className="EditInput" {...register("description", {
+                <textarea maxLength={300} className="EditTextarea" {...register("description", { 
                     required: { value: true, message: "Missing Description" },
                     minLength: { value: 2, message: "Description must be minimum 5 chars" },
                     maxLength: { value: 100, message: "Description can't exceed 300 chars" }
@@ -107,7 +111,7 @@ function EditVacation(): JSX.Element {
                 <span className="SpanMessage">{departureDateError}</span>
 
                 <label>Price:</label>
-                <input type="number" className="EditInput" {...register("price", {
+                <input type="number" step="0.01" className="EditInput" {...register("price", {
                     required: { value: true, message: "Missing price" },
                     min: { value: 0, message: "Price can't be negative" },
                     max: { value: 10000, message: "Price can't exceed 10,000" },

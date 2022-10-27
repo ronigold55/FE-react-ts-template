@@ -58,7 +58,7 @@ function Register(): JSX.Element {
                     maxLength: {value: 100, message: "username too long"}
                 })}/>
                 <span className="spanMessage">{formState.errors.username?.message}</span>
-                {usernameExists && <span>Username is taken</span>}
+                {usernameExists && <span className="spanMessage">Username is taken</span>}
 
                 <TextField label="Password" type="password" variant="outlined" className="TextBox" {...register("password", {
                     required: {value: true, message: "Missing password!"},
