@@ -32,16 +32,12 @@ function EditVacation(): JSX.Element {
         const departureDate = new Date(vacation.departureDate) 
         departureDate.setDate(departureDate.getDate() + 1);
         const departureString = departureDate.toISOString();
-
-        console.log(vacation.arrivalDate)
     
         setValue("vacationId", vacation.vacationId);
         setValue("destination", vacation.destination);
         setValue("description", vacation.description);
         setValue("arrivalDate", arrivalString.substring(0, 10));
         setValue("departureDate", departureString.substring(0, 10));
-        setValue("arrivalDate", vacation.arrivalDate);
-        setValue("departureDate", vacation.departureDate);
         setValue("price", vacation.price);
         setValue("followersCount", vacation.followersCount);
         setValue("isFollowed", vacation.isFollowed);
