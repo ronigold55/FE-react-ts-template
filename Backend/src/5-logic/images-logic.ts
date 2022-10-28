@@ -6,12 +6,15 @@ async function exists(filePath: string): Promise<boolean> {
 }
 
 async function getFilePath(fullPath: string): Promise<string> {
+
     // checking if given image exists
     const exist = await exists(fullPath);
-    if (!exist){
+
+    if (!exist) {
         // returning default image
         return `${config.imagesFolder}/imageNotFound.png`;
     };
+
     return fullPath;
 }
 

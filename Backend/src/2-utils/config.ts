@@ -5,7 +5,7 @@ class Config {
     public mysqlHost = "localhost";
     public mysqlUser = "root";
     public mysqlPassword = "";
-    public mysqlDatabase = "vacation"; 
+    public mysqlDatabase = "vacation";
     public imagesFolder = path.resolve(__dirname, "..", "1-assets", "images");
 }
 

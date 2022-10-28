@@ -10,33 +10,19 @@ import vacationLogic from "../5-logic/vacation-logic";
 
 const router = express.Router();
 
-//--------------------
-//get all the vacation with followers for user
+// GET http://localhost:3001/api/vacations
 router.get("/api/vacations", async (request: Request, response: Response, next: NextFunction) => {
     try {
         const authHeader = request.header("authorization");
         const vacations = await vacationLogic.getAllVacations(authHeader);
-        response.json(vacations);
+        response.json(vacations);// status: 200 - OK
     }
     catch (err: any) {
-        next(err);
-    }
-});
-//------------------
-
-//get one vacation
-router.get("/api/vacation-by-id/:vacationId", verifyLoggedIn, async (request: Request, response: Response, next: NextFunction) => {
-    try {
-        const vacationId = +request.params.vacationId;
-        const vacation = await vacationLogic.getOneVacation(vacationId);
-        response.json(vacation);
-    }
-    catch (err: any) {
-        next(err);
+        next(err); // Jumping to catchAll middleware.
     }
 });
 
-//add follower
+// POST http://localhost:3001/api/vacations/:vacationId/follow
 router.post("/api/vacations/:vacationId/follow", verifyLoggedIn, async (request: Request, response: Response, next: NextFunction) => {
     try {
         const authHeader = request.header("authorization");
@@ -44,14 +30,14 @@ router.post("/api/vacations/:vacationId/follow", verifyLoggedIn, async (request:
         const vacationId = +request.params.vacationId;
         const follow = new FollowerModel(userId, vacationId);
         const addedFollow = await vacationLogic.addFollow(follow);
-        response.status(201).json(addedFollow);
+        response.status(201).json(addedFollow); // status: 201 - Created
     }
     catch (err: any) {
-        next(err);
+        next(err); // Jumping to catchAll middleware.
     }
 });
 
-//delete follower
+// DELETE http://localhost:3001/api/vacations/:vacationId/unfollow
 router.delete("/api/vacations/:vacationId/unfollow", verifyLoggedIn, async (request: Request, response: Response, next: NextFunction) => {
     try {
         const authHeader = request.header("authorization");
@@ -59,61 +45,50 @@ router.delete("/api/vacations/:vacationId/unfollow", verifyLoggedIn, async (requ
         const vacationId = +request.params.vacationId;
         const deleteFollow = new FollowerModel(userId, vacationId);
         await vacationLogic.deleteFollow(deleteFollow);
-        response.sendStatus(204);
+        response.sendStatus(204); // status: 204 - No Content
     }
     catch (err: any) {
-        next(err);
+        next(err); // Jumping to catchAll middleware.
     }
 });
 
-//get all the vacations by Admin 
-// router.get("/api/vacations", verifyAdmin, async (request: Request, response: Response, next: NextFunction) => {
-//     try {
-//         const vacations = await vacationLogic.getVacations();
-//         response.json(vacations);
-//     }
-//     catch (err: any) {
-//         next(err);
-//     }
-// });
-
-//update vacation by Admin only
+// PUT http://localhost:3001/api/vacations/:vacationId
 router.put("/api/vacations/:vacationId", verifyAdmin, async (request: Request, response: Response, next: NextFunction) => {
     try {
-        request.body.image = request.files?.image;
+        request.body.image = request.files?.image; // Here are the files given from the front.
         const vacationId = +request.params.vacationId;
-        request.body.vacationId = vacationId;
+        request.body.vacationId = vacationId;  // Set the route vacationId into the body
         const vacation = new VacationModel(request.body);
         const updatedVacation = await vacationLogic.updateVacation(vacation);
-        response.status(203).json(updatedVacation);
+        response.json(updatedVacation); // status: 200 - OK
     }
     catch (err: any) {
-        next(err);
+        next(err); // Jumping to catchAll middleware.
     }
 });
 
-//add vacation by Admin only
+// POST http://localhost:3001/api/vacations
 router.post("/api/vacations", verifyAdmin, async (request: Request, response: Response, next: NextFunction) => {
     try {
-        request.body.image = request.files?.image;
+        request.body.image = request.files?.image; // Here are the files given from the front.
         const vacation = new VacationModel(request.body);
         const addedVacation = await vacationLogic.addVacation(vacation);
-        response.status(201).json(addedVacation);
+        response.status(201).json(addedVacation); // status: 201 - Created
     }
     catch (err: any) {
-        next(err);
+        next(err); // Jumping to catchAll middleware.
     }
 });
 
-//delete vacation by Admin only
+// DELETE http://localhost:3001/api/vacations/:vacationId
 router.delete("/api/vacations/:vacationId", verifyAdmin, async (request: Request, response: Response, next: NextFunction) => {
     try {
         const vacationId = +request.params.vacationId;
         await vacationLogic.deleteVacation(vacationId);
-        response.sendStatus(204);
+        response.sendStatus(204); // status: 204 - No Content
     }
     catch (err: any) {
-        next(err);
+        next(err); // Jumping to catchAll middleware.
     }
 });
 

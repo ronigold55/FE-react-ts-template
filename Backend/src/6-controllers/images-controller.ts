@@ -4,6 +4,7 @@ import imagesLogic from "../5-logic/images-logic";
 
 const router = express.Router();
 
+// GET http://localhost:3001/api/images/:imageName
 router.get("/api/images/:imageName", async (request: Request, response: Response, next: NextFunction) => {
     try {
         const imageName = request.params.imageName;
@@ -12,7 +13,7 @@ router.get("/api/images/:imageName", async (request: Request, response: Response
         response.sendFile(filePath);
     }
     catch (err: any) {
-        next(err);
+        next(err); // Jumping to catchAll middleware.
     }
 });
 

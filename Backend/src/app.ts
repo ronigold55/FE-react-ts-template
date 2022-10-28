@@ -8,13 +8,15 @@ import expressFileUpload from "express-fileupload";
 import authController from "./6-controllers/auth-controller";
 import imagesController from "./6-controllers/images-controller";
 
-
+// Create server object: 
 const server = express();
-
+server.use(cors());
+// Tell express to read the body json object:
+server.use(express.json());
+// Handle files: 
 server.use(expressFileUpload());
 
-server.use(cors());
-server.use(express.json());
+// Route any request to the server into our controller:
 server.use("/", vacationController);
 server.use("/", authController);
 server.use("/", imagesController);

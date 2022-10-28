@@ -2,16 +2,17 @@ import { OkPacket } from "mysql";
 import dal from "../2-utils/dal";
 import { IdNotFoundError, ValidationError } from "../4-models/client-errors";
 import VacationModel from "../4-models/vacation-model";
-import {v4 as uuid} from "uuid";
+import { v4 as uuid } from "uuid";
 import safeDelete from "../2-utils/safe-delete";
 import FollowerModel from "../4-models/follower-model";
 import config from "../2-utils/config";
 import auth from "../2-utils/auth";
 
 
-//get all vacations with followers
+//Get all vacations with followers count
 async function getAllVacations(authHeader: string): Promise<VacationModel[]> {
 
+    // Get the user from the provided Token:
     const userId = auth.getUserIdFromToken(authHeader);
 
     const sql = `SELECT DISTINCT
@@ -25,7 +26,8 @@ async function getAllVacations(authHeader: string): Promise<VacationModel[]> {
 
     const vacations = await dal.execute(sql, [userId]);
 
-    if(!vacations) throw new IdNotFoundError(userId);
+    // validate if the vacation was returned:
+    if (!vacations) throw new IdNotFoundError(userId);
 
     vacations.map(v => v.isFollowed = v.isFollowed ? true : false);
 
@@ -33,60 +35,57 @@ async function getAllVacations(authHeader: string): Promise<VacationModel[]> {
 };
 
 
-//get one vacation by vacationId
-async function getOneVacation(vacationId: number): Promise<VacationModel> {
-
-    const sql = `SELECT * FROM vacations WHERE vacations.vacationId = ? `;
-
-    const vacations = await dal.execute(sql, [vacationId]);
-
-    const vacation = vacations[0];
-
-    if(!vacation) throw new IdNotFoundError(vacationId);
-
-    return vacation;
-};
-
-
-//add follower
+//Add follower
 async function addFollow(follow: FollowerModel): Promise<FollowerModel> {
 
+    // validate the provided follower:
     const error = follow.validate();
-    if(error) throw new ValidationError(error);
+    if (error) throw new ValidationError(error);
 
+    // add the follower connection in the DB
     const sql = `INSERT INTO followers VALUES (?, ?)`;
 
     await dal.execute(sql, [follow.userId, follow.vacationId]);
-    
+
     return follow;
 };
 
-//delete follower
+
+//Delete follower
 async function deleteFollow(follow: FollowerModel): Promise<void> {
 
+    // delete the follower connection in the DB
     const sql = `DELETE FROM followers WHERE userId = ? AND vacationId =?`;
 
     const result: OkPacket = await dal.execute(sql, [follow.userId, follow.vacationId]);
 
-    if(result.affectedRows === 0) throw new IdNotFoundError(follow.vacationId);
-
+    // make sure the update was registered
+    if (result.affectedRows === 0) throw new IdNotFoundError(follow.vacationId);
 };
 
 
-//update vacation
+//Update vacation
 async function updateVacation(vacation: VacationModel): Promise<VacationModel> {
 
+    //validate
     const error = vacation.validate();
-    if(error) throw new ValidationError(error);
+    if (error) throw new ValidationError(error);
 
-    if(vacation.image){
-        await safeDelete("./src/1-assets/images/" + vacation.imageName);
-        const extension = vacation.image.name.substring(vacation.image.name.lastIndexOf("."));
+    // Handle image: 
+    if (vacation.image) {
+        // delete the file
+        await safeDelete(`${config.imagesFolder}/${vacation.imageName}`);
+        // save the file extension
+        const extension = vacation.image.name.substring(vacation.image.name.lastIndexOf(".")); // .gif / .png / .jpg / .jpeg 
+        // generate a universally unique name for the file
         vacation.imageName = uuid() + extension;
-        await vacation.image.mv("./src/1-assets/images/" + vacation.imageName);
+        //move the file to assets
+        await vacation.image.mv(`${config.imagesFolder}/${vacation.imageName}`); // mv = move = copy image
+        // Delete file before saving.
         delete vacation.image;
     };
-    
+
+    // update the vacation in the DB
     const sql = `UPDATE vacations SET  
                     destination = ?,
                     description = ?,
@@ -97,63 +96,76 @@ async function updateVacation(vacation: VacationModel): Promise<VacationModel> {
                     WHERE vacations.vacationId = ?`;
 
     const result: OkPacket = await dal.execute(sql, [vacation.destination, vacation.description, vacation.imageName,
-                                                      vacation.arrivalDate, vacation.departureDate, vacation.price, vacation.vacationId]);
+    vacation.arrivalDate, vacation.departureDate, vacation.price, vacation.vacationId]);
 
-    if(result.affectedRows === 0) throw new IdNotFoundError(vacation.vacationId);
+    // make sure the update was registered
+    if (result.affectedRows === 0) throw new IdNotFoundError(vacation.vacationId);
     return vacation;
 };
 
-//add vacation
+
+//Add vacation
 async function addVacation(vacation: VacationModel): Promise<VacationModel> {
 
+    //validate
     const error = vacation.validate();
-    if(error) throw new ValidationError(error);
- 
-    if(vacation?.image){
+    if (error) throw new ValidationError(error);
+
+    // Add the new image: 
+    if (vacation?.image) {
+        // save the file extension
         const extension = vacation.image.name.substring(vacation.image.name.lastIndexOf("."));
+        // generate a universally unique name for the file
         vacation.imageName = uuid() + extension;
+        //move the file to assets
         await vacation.image.mv(`${config.imagesFolder}/${vacation.imageName}`);
+        // Delete file before saving.
         delete vacation.image;
     };
 
+    //insert new vacation into DB
     const sql = `INSERT INTO vacations VALUES (DEFAULT, ?, ?, ?, ?, ?, ? )`;
 
     const result: OkPacket = await dal.execute(sql, [vacation.destination, vacation.description, vacation.imageName,
-                                                        vacation.arrivalDate, vacation.departureDate, vacation.price]);
+    vacation.arrivalDate, vacation.departureDate, vacation.price]);
 
+    // update the vacation object with the returned data
     vacation.vacationId = result.insertId;
     vacation.followersCount = 0;
     vacation.isFollowed = false;
-    
+
     return vacation;
 };
 
-//delete vacation
+
+//Delete vacation
 async function deleteVacation(vacationId: number): Promise<void> {
- 
+
+    //get the current image by vacationId
     const sqlSelectImage = `SELECT imageName FROM vacations WHERE vacations.vacationId = ?`;
     const vacations = await dal.execute(sqlSelectImage, [vacationId]);
     const vacation = vacations[0];
-    if(!vacations) throw new IdNotFoundError(vacationId);
+    if (!vacations) throw new IdNotFoundError(vacationId);
+    //delete the image
     await safeDelete(`${config.imagesFolder}/${vacation.imageName}`);
-    
+
+    // delete the vacation by vacationId from DB
     const sql = `DELETE FROM vacations WHERE vacations.vacationId = ? `;
 
     const result: OkPacket = await dal.execute(sql, [vacationId]);
 
-    if(result.affectedRows === 0) throw new IdNotFoundError(vacationId);
+    // make sure the update was registered
+    if (result.affectedRows === 0) throw new IdNotFoundError(vacationId);
 
 };
 
 
 export default {
-
     getAllVacations,
-    getOneVacation,
     addFollow,
     deleteFollow,
     updateVacation,
-    addVacation, 
+    addVacation,
     deleteVacation
 };
 
