@@ -6,7 +6,7 @@ import { vacationStore } from "../../../Redux/VacationStates";
 import notifyService from "../../../Services/NotifyService";
 import vacationService from "../../../Services/VacationService";
 import useVerifyAdmin from "../../../Utils/useVerifyAdmin";
-import {Button} from "@mui/material";
+import { Button } from "@mui/material";
 import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutline';
 import "./EditVacation.css";
 
@@ -14,25 +14,25 @@ function EditVacation(): JSX.Element {
 
     useVerifyAdmin();
 
-    const { register, handleSubmit, formState, setValue} = useForm<VacationModel>();
+    const { register, handleSubmit, formState, setValue } = useForm<VacationModel>();
     const navigate = useNavigate();
     const params = useParams();
 
     const [arrivalDateError, setArrivalDateError] = useState<string>("");
     const [departureDateError, setDepartureDateError] = useState<string>("");
-    
+
     useEffect(() => {
-       
+
         const vacation = { ...vacationStore.getState().vacations.find(v => v.vacationId === +params.vacationId) }
 
-        const arrivalDate = new Date(vacation.arrivalDate) 
+        const arrivalDate = new Date(vacation.arrivalDate)
         arrivalDate.setDate(arrivalDate.getDate() + 1);
         const arrivalString = arrivalDate.toISOString();
 
-        const departureDate = new Date(vacation.departureDate) 
+        const departureDate = new Date(vacation.departureDate)
         departureDate.setDate(departureDate.getDate() + 1);
         const departureString = departureDate.toISOString();
-    
+
         setValue("vacationId", vacation.vacationId);
         setValue("destination", vacation.destination);
         setValue("description", vacation.description);
@@ -42,14 +42,14 @@ function EditVacation(): JSX.Element {
         setValue("followersCount", vacation.followersCount);
         setValue("isFollowed", vacation.isFollowed);
         setValue("imageName", vacation.imageName);
-        
+
     }, []);
 
     async function send(vacation: VacationModel) {
         try {
-            const now = new Date().toISOString().slice(0,10);
+            const now = new Date().toISOString().slice(0, 10);
             if (vacation.arrivalDate < now) {
-                setArrivalDateError("The Date passed");               
+                setArrivalDateError("The Date passed");
                 return;
             }
             setArrivalDateError("");
@@ -85,16 +85,16 @@ function EditVacation(): JSX.Element {
                 <span className="SpanMessage">{formState.errors.destination?.message}</span>
 
                 <label>Description:</label>
-                <textarea maxLength={300} className="EditTextarea" {...register("description", { 
+                <textarea maxLength={300} className="EditTextarea" {...register("description", {
                     required: { value: true, message: "Missing Description" },
-                    minLength: { value: 2, message: "Description must be minimum 5 chars" },
-                    maxLength: { value: 100, message: "Description can't exceed 300 chars" }
-                })}/>
+                    minLength: { value: 5, message: "Description must be minimum 5 chars" },
+                    maxLength: { value: 300, message: "Description can't exceed 300 chars" }
+                })} />
                 <span className="SpanMessage">{formState.errors.description?.message}</span>
 
                 <label>Arrival Date:</label>
                 <input type="date" className="EditInput" {...register("arrivalDate", {
-                    required: { value: true, message: "Missing Arrival Date" }                  
+                    required: { value: true, message: "Missing Arrival Date" }
                 })} />
                 <span className="SpanMessage">{formState.errors.arrivalDate?.message}</span>
                 <span className="SpanMessage">{arrivalDateError}</span>
@@ -121,7 +121,7 @@ function EditVacation(): JSX.Element {
 
                 <input type="number" hidden {...register("followersCount")} />
 
-                <Button type="submit" className="BtnAdd" startIcon={<DriveFileRenameOutlineIcon/>}>Edit</Button>
+                <Button type="submit" className="BtnAdd" startIcon={<DriveFileRenameOutlineIcon />}>Edit</Button>
 
             </form>
 

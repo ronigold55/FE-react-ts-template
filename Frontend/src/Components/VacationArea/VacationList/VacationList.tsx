@@ -83,9 +83,8 @@ function VacationList(): JSX.Element {
             {checked && filterMyVacations.slice((page - 1) * totalItemsPerPage, page * totalItemsPerPage).map(v => { return (<VacationCard key={v.vacationId} vacation={v} />) })}
             {!checked && vacations.slice((page - 1) * totalItemsPerPage, page * totalItemsPerPage).map(vac => { return (<VacationCard  key={vac.vacationId} vacation={vac} />) })}
        
-            <div className="pagin">
             <Pagination count={numOfPage} page={page} onChange={handleChange} defaultPage={1} color="secondary" size="large" />
-            </div>
+            
         </div>
     );
 }

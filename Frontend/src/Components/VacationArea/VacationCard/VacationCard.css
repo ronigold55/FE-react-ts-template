@@ -30,7 +30,7 @@
     text-align: justify;
     margin-top: 10px;
     min-height: 70px;
-    word-wrap:break-word;
+    word-wrap: break-word;
 }
 
 .VacationCard Img {
@@ -87,7 +87,7 @@
     font-size: medium;
 }
 
-.VacationCard > a {
+.VacationCard>a {
     color: blueviolet;
     text-decoration: none;
     font-family: cursive;
@@ -141,7 +141,7 @@
     background-color: blueviolet;
 }
 
-.VacationCard .DivFollowCount{
+.VacationCard .DivFollowCount {
     position: relative;
     display: inline-block;
     width: 80px;

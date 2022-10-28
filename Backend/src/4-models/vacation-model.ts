@@ -33,7 +33,7 @@ class VacationModel {
 
         vacationId: Joi.number().optional().positive().integer(),
         destination: Joi.string().required().min(2).max(50),
-        description: Joi.string().required().min(2).max(300),
+        description: Joi.string().required().min(5).max(300),
         image: Joi.object().optional(),
         imageName: Joi.string().optional(),
         arrivalDate: Joi.string().required(),

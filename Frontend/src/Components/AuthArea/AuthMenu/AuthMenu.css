@@ -3,11 +3,11 @@
     top: 20px;
 }
 
-.AuthMenu a, .AuthMenu span{
-    color:rebeccapurple;
+.AuthMenu a,
+.AuthMenu span {
+    color: rebeccapurple;
     text-align: center;
     text-decoration: none;
     font-size: 20px;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-

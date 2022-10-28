@@ -13,7 +13,6 @@ import "./VacationCard.css";
 
 interface VacationCardProps {
     vacation: VacationModel
-    expired?: boolean;
 }
 
 function VacationCard(props: VacationCardProps): JSX.Element {
@@ -83,7 +82,7 @@ function VacationCard(props: VacationCardProps): JSX.Element {
                 <div className="Card">
 
                     <img src={`${appConfig.imagesURL}${vacation.imageName || "ImgNotFound.png"}`} />
-                    
+
                     <div className="Details">
                         <p className="Destination">{vacation.destination}</p>
                         <p className="Description">{vacation.description}</p>

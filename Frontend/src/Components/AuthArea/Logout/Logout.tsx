@@ -14,7 +14,6 @@ function Logout(props: LogoutProps): JSX.Element {
     const navigate = useNavigate();
 
     useEffect( () => {
-
         try{
             authService.logout();
             vacationService.resetVacations();
@@ -24,7 +23,6 @@ function Logout(props: LogoutProps): JSX.Element {
         catch(err:any) {
             notifyService.error(err);
         }
-
     } ,[])
     
     return null;

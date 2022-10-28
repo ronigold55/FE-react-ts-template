@@ -31,18 +31,6 @@ const opts: ApexCharts.ApexOptions = {
         }
     },
 
-    // title: {
-    //     text: 'Followers Report',
-    //     align: 'center',
-    //     style: {
-    //         fontFamily:
-    //             "Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif",
-    //         fontSize: '30px',
-    //         fontWeight: 'none',
-    //         color: 'rgb(89, 38, 141)'
-    //     },
-    // },
-
     stroke: {
         width: 1,
         colors: ['rebeccapurple']
@@ -89,7 +77,6 @@ function FollowersChart(): JSX.Element {
                         color: 'rgb(156, 135, 177)'
                     }]
                 });
-
             })
             .catch(err => notifyService.error(err));
     }, [])

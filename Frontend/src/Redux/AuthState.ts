@@ -2,7 +2,7 @@ import UserModel from "../Models/UserModel";
 import jwtDecode from "jwt-decode";
 import { createStore } from "redux";
 
-// 1. state
+// 1. State
 export class AuthState {
     public token: string = null;
     public user: UserModel = null;
@@ -16,35 +16,35 @@ export class AuthState {
     }
 }
 
-// 2. enum actionType
+// 2. enum Action Type
 export enum AuthActionType {
     Register,
     Login,
     Logout
 }
 
-// 3. interface action object
+// 3. interface Action
 export interface AuthAction {
     type: AuthActionType,
     payload?: string;
 }
 
-// 4. reducer function
+// 4. Reducer function
 export function authReducer(currentState = new AuthState(), action: AuthAction):AuthState {
 
     const newState = { ...currentState};
 
     switch(action.type) {
 
-        case AuthActionType.Register:
-        case AuthActionType.Login:
+        case AuthActionType.Register: // Here the payload is a token string
+        case AuthActionType.Login: // Here the payload is a token string
             newState.token = action.payload;
-            const container: { user: UserModel } = jwtDecode(newState.token);
-            newState.user = container.user;
-            localStorage.setItem("token", newState.token);
+            const container: { user: UserModel } = jwtDecode(newState.token); // container is a wrapper object containing the user.
+            newState.user = container.user; // User object hidden inside the token
+            localStorage.setItem("token", newState.token); // Save token to storage.
             break;
 
-        case AuthActionType.Logout:
+        case AuthActionType.Logout: // Here we have no payload
             newState.token = null;
             newState.user = null;
             localStorage.removeItem("token");
@@ -55,5 +55,5 @@ export function authReducer(currentState = new AuthState(), action: AuthAction):
     return newState;
 }
 
-// 5. store 
+// 5. Store 
 export const authStore = createStore(authReducer);

@@ -3,17 +3,21 @@ import { authStore } from "../Redux/AuthState";
 
 class InterceptorService {
 
-    public createInterceptor(){
+    public createInterceptor() {
 
-        axios.interceptors.request.use( request => {
+        // On each request: 
+        axios.interceptors.request.use(request => {
 
-            if(authStore.getState().token) {
+            // If we have token: 
+            if (authStore.getState().token) {
 
+                // Attach it to the headers: 
                 request.headers = {
-                    "authorization": "Bearer " + authStore.getState().token
+                    "authorization": "Bearer " + authStore.getState().token // Must be that format
                 };
             }
 
+            // Return the new request:
             return request;
 
         });

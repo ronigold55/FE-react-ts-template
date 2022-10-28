@@ -1,5 +1,4 @@
-
-.Register > form {
+.Register>form {
     width: 250px;
     height: 2000px;
     text-align: center;
@@ -7,12 +6,13 @@
     margin: 40px auto;
 }
 
-.Register .TextBox, .btn{
+.Register .TextBox,
+.Btn {
     width: 100%;
     margin: 20px 0;
 }
 
-.Register .btn {
+.Register .Btn {
     height: 40px;
     width: 140px;
     align-items: center;
@@ -20,17 +20,17 @@
     margin: 10px;
     border: solid 1px rebeccapurple;
     border-radius: 5px;
-    color:rebeccapurple;
+    color: rebeccapurple;
     font-size: medium;
-} 
+}
 
 .Register h2 {
     text-align: center;
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    color:rebeccapurple;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: rebeccapurple;
 }
 
-.Register .spanMessage {
+.Register .SpanMessage {
     color: red;
     margin: 40px 0;
     position: absolute;
