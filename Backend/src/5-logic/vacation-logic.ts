@@ -12,7 +12,7 @@ import auth from "../2-utils/auth";
 //Get all vacations with followers count
 async function getAllVacations(authHeader: string): Promise<VacationModel[]> {
 
-    // Get the user from the provided Token:
+    //get the user from the provided Token:
     const userId = auth.getUserIdFromToken(authHeader);
 
     const sql = `SELECT DISTINCT

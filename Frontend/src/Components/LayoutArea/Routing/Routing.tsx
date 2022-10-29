@@ -7,7 +7,6 @@ import Register from "../../AuthArea/Register/Register";
 import VacationList from "../../VacationArea/VacationList/VacationList";
 import PageNotFound from "../PageNotFound/PageNotFound";
 import FollowersChart from "../../AdminArea/Charts/FollowersChart";
-import "./Routing.css";
 
 
 function Routing(): JSX.Element {

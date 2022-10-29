@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import authService from "../../../Services/AuthService";
 import notifyService from "../../../Services/NotifyService";
 import vacationService from "../../../Services/VacationService";
-import "./Logout.css";
 
 interface LogoutProps {
     off: boolean;

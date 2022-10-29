@@ -15,7 +15,7 @@ router.get("/api/vacations", async (request: Request, response: Response, next: 
     try {
         const authHeader = request.header("authorization");
         const vacations = await vacationLogic.getAllVacations(authHeader);
-        response.json(vacations);// status: 200 - OK
+        response.json(vacations); // status: 200 - OK
     }
     catch (err: any) {
         next(err); // Jumping to catchAll middleware.
