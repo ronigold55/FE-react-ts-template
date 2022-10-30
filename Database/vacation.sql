@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 24, 2022 at 09:02 AM
+-- Generation Time: Oct 30, 2022 at 10:29 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -48,14 +48,15 @@ INSERT INTO `followers` (`userId`, `vacationId`) VALUES
 (17, 33),
 (17, 40),
 (17, 41),
+(20, 14),
+(20, 16),
 (20, 17),
-(20, 21),
 (20, 29),
 (20, 31),
 (20, 32),
-(20, 40),
+(20, 34),
 (20, 41),
-(20, 43),
+(20, 42),
 (21, 14),
 (21, 16),
 (21, 21),
@@ -95,9 +96,9 @@ INSERT INTO `roles` (`roleId`, `roleName`) VALUES
 
 CREATE TABLE `users` (
   `userId` int(11) NOT NULL,
-  `firstName` varchar(50) NOT NULL,
-  `lastName` varchar(50) NOT NULL,
-  `username` varchar(10) NOT NULL,
+  `firstName` varchar(100) NOT NULL,
+  `lastName` varchar(100) NOT NULL,
+  `username` varchar(100) NOT NULL,
   `password` varchar(128) NOT NULL,
   `roleId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -139,10 +140,10 @@ INSERT INTO `vacations` (`vacationId`, `destination`, `description`, `imageName`
 (16, 'Alaska', 'Alaska is unique and combines sea and glaciers, mountains, forests and animals.', '121c4711-1298-4420-a5de-cef088cea49b.jpg', '2023-01-17', '2023-01-26', '2500.00'),
 (17, 'Budapest', 'The capital of Hungary is one of the friendliest destinations for Israelis.', '4ea33a85-0251-4ddc-a239-fd835919c9c4.jpg', '2022-11-29', '2022-12-04', '500.00'),
 (21, 'Maroko', 'Just sand and mountains? Absolutely not, fascinating culture and landscapes that are out of this world.', '8c203bc5-7152-4e57-a940-b9a5e4c7cf21.jpg', '2023-04-05', '2023-04-19', '580.00'),
-(22, 'London', 'Attracts many tourists especially to the Queen\'s Guard and the famous Big Ben.', 'be11f594-2272-4862-9f94-e17e2244d6c3.jpg', '2022-12-04', '2022-12-12', '710.00'),
-(29, 'Sinai', 'The Sinai Peninsula enchants the Israeli traveler with great beaches and a lot of peace.', '360d7bb1-1138-4f04-a150-1942a8c62a71.jpg', '2022-12-20', '2022-12-28', '150.00'),
+(22, 'London', 'Attracts many tourists especially to the Queen\'s Guard and the famous Big Ben.', 'be11f594-2272-4862-9f94-e17e2244d6c3.jpg', '2022-12-04', '2022-12-12', '680.00'),
+(29, 'Sinai', 'The Sinai Peninsula enchants the Israeli traveler with great beaches and a lot of peace.', '360d7bb1-1138-4f04-a150-1942a8c62a71.jpg', '2023-02-10', '2023-03-11', '150.00'),
 (31, 'Japan', 'In recent years, Japan has become one of the most desirable and popular destinations in the world.', '3151d150-b0f1-4e39-ae60-b8f36cdf5fc0.jpg', '2023-02-22', '2023-03-05', '1100.00'),
-(32, 'Cyprus', 'The relatively cheap price makes Cyprus a popular and sought-after destination for a perfect summer vacation.', '2953b2f2-e47e-4c68-9f17-f2f1dcd64fa2.jpg', '2022-12-25', '2023-01-10', '120.00'),
+(32, 'Cyprus', 'The relatively cheap price makes Cyprus a popular and sought-after destination for a perfect summer vacation.', '2953b2f2-e47e-4c68-9f17-f2f1dcd64fa2.jpg', '2022-12-25', '2023-01-14', '120.00'),
 (33, 'Dubai', 'The charm of this place - from a small fishing village, has become in 60 years no less than a powerhouse.', '5412b65f-a7b0-4263-9231-e76bcb3af814.jpg', '2023-01-02', '2023-01-15', '800.00'),
 (34, 'Dublin', 'One of the most intriguing destinations in Europe for the Israeli traveler.', 'c0b87b22-4d90-40c6-bfe7-9d78e674ee4f.jpg', '2022-12-26', '2023-01-09', '580.00'),
 (40, 'Pariz', 'The city of lights, romantic and chic, beauty and French style.', '3bed5d3a-f184-4700-a001-5a459de852b8.jpg', '2023-02-05', '2023-02-10', '420.00'),
@@ -194,13 +195,13 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `userId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `userId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `vacations`
 --
 ALTER TABLE `vacations`
-  MODIFY `vacationId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `vacationId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 
 --
 -- Constraints for dumped tables
