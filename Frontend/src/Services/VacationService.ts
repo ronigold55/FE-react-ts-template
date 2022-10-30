@@ -3,6 +3,7 @@ import FollowerModel from "../Models/FollowerModel";
 import VacationModel from "../Models/VacationModel";
 import { VacationAction, VacationActionType, vacationStore } from "../Redux/VacationStates";
 import appConfig from "../Utils/Config";
+import notifyService from "./NotifyService";
 
 class VacationService {
 
@@ -29,6 +30,32 @@ class VacationService {
 
         // Return vacations:
         return vacations;
+    }
+
+    //Get one vacation by vacationId:
+    public async getOneVacation(vacationId: number): Promise<VacationModel> {
+
+        let vacation;
+
+        // Take vacations resides in redux global state:
+        let vacations = vacationStore.getState().vacations;
+
+        // If we have no vacations in global state - fetch them from server:
+        if (vacations.length === 0) {
+            
+            // Fetch all vacations from backend:
+            const response = await axios.get<VacationModel>(appConfig.vacationsUrl + vacationId);
+            
+            // Extract vacations from axios response:
+            vacation = response.data;
+           
+
+        } else {
+            vacation = vacations.find(v => v.vacationId === vacationId);
+        }
+
+        // Return vacation:
+        return vacation;
     }
 
     //Filter vacations:

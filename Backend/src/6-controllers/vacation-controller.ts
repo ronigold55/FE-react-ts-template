@@ -22,6 +22,18 @@ router.get("/api/vacations", async (request: Request, response: Response, next: 
     }
 });
 
+// GET http://localhost:3001/api/vacations/:vacationId
+router.get("/api/vacations/:vacationId", async (request: Request, response: Response, next: NextFunction) => {
+    try {
+        const vacationId = +request.params.vacationId;
+        const vacation = await vacationLogic.getOneVacation(vacationId);
+        response.json(vacation); // status: 200 - OK
+    }
+    catch (err: any) {
+        next(err); // Jumping to catchAll middleware.
+    }
+});
+
 // POST http://localhost:3001/api/vacations/:vacationId/follow
 router.post("/api/vacations/:vacationId/follow", verifyLoggedIn, async (request: Request, response: Response, next: NextFunction) => {
     try {

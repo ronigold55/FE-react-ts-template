@@ -34,6 +34,22 @@ async function getAllVacations(authHeader: string): Promise<VacationModel[]> {
     return vacations;
 };
 
+//Get one vacation by vacationId
+async function getOneVacation(vacationId: number): Promise<VacationModel> {
+
+    //get one vacation by id
+    const sql = `SELECT * FROM vacations
+                    WHERE vacationId = ?`;
+
+    const vacations = await dal.execute(sql, [vacationId]);
+
+    const vacation = vacations[0];
+
+    // validate if the vacation was returned:
+    if (!vacation) throw new IdNotFoundError(vacationId);
+
+    return vacation;
+};
 
 //Add follower
 async function addFollow(follow: FollowerModel): Promise<FollowerModel> {
@@ -162,6 +178,7 @@ async function deleteVacation(vacationId: number): Promise<void> {
 
 export default {
     getAllVacations,
+    getOneVacation,
     addFollow,
     deleteFollow,
     updateVacation,

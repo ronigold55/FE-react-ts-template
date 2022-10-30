@@ -22,26 +22,29 @@ function EditVacation(): JSX.Element {
     const [departureDateError, setDepartureDateError] = useState<string>("");
 
     useEffect(() => {
+        const vacationId = +params.vacationId
+        vacationService.getOneVacation(vacationId)
+            .then(vacation => {
 
-        const vacation = { ...vacationStore.getState().vacations.find(v => v.vacationId === +params.vacationId) }
+                const arrivalDate = new Date(vacation.arrivalDate)
+                arrivalDate.setDate(arrivalDate.getDate() + 1);
+                const arrivalString = arrivalDate.toISOString();
 
-        const arrivalDate = new Date(vacation.arrivalDate)
-        arrivalDate.setDate(arrivalDate.getDate() + 1);
-        const arrivalString = arrivalDate.toISOString();
+                const departureDate = new Date(vacation.departureDate)
+                departureDate.setDate(departureDate.getDate() + 1);
+                const departureString = departureDate.toISOString();
 
-        const departureDate = new Date(vacation.departureDate)
-        departureDate.setDate(departureDate.getDate() + 1);
-        const departureString = departureDate.toISOString();
-
-        setValue("vacationId", vacation.vacationId);
-        setValue("destination", vacation.destination);
-        setValue("description", vacation.description);
-        setValue("arrivalDate", arrivalString.substring(0, 10));
-        setValue("departureDate", departureString.substring(0, 10));
-        setValue("price", vacation.price);
-        setValue("followersCount", vacation.followersCount);
-        setValue("isFollowed", vacation.isFollowed);
-        setValue("imageName", vacation.imageName);
+                setValue("vacationId", vacation.vacationId);
+                setValue("destination", vacation.destination);
+                setValue("description", vacation.description);
+                setValue("arrivalDate", arrivalString.substring(0, 10));
+                setValue("departureDate", departureString.substring(0, 10));
+                setValue("price", vacation.price);
+                setValue("followersCount", vacation.followersCount);
+                setValue("isFollowed", vacation.isFollowed);
+                setValue("imageName", vacation.imageName);
+            })
+            .catch(err => notifyService.error(err.message))
 
     }, []);
 
@@ -59,7 +62,7 @@ function EditVacation(): JSX.Element {
             }
             setDepartureDateError("");
             await vacationService.updateVacation(vacation);
-            notifyService.success("Vacation updated!");
+            notifyService.success("Vacation has been updated!");
             navigate("/vacations");
         }
         catch (err: any) {
