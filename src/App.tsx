@@ -1,3 +1,4 @@
+import ContactMe from "./components/ContactMe";
 import Users from "./components/Users";
 import { UserType } from "./types/user-type";
 
@@ -16,6 +17,8 @@ function App() {
             <h1> Hello React-Typescript template</h1>
             <div>
                 <Users users={users}/>
+                <br/>
+                <ContactMe/>
             </div>
         </div>
     );
