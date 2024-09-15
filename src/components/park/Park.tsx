@@ -14,7 +14,7 @@ const Park = (props: Props) => {
 
     return (
         <div id='park-container'>
-            <div id="park-city">{props.park.city}</div>
+            <div id="park-city">({props.park.id}){props.park.city}</div>
             <div id="park-street">{props.park.street}</div>
 
             <div id="park-number">{props.park.number}</div>
