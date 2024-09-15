@@ -1,35 +1,29 @@
 import axios from "axios";
 import { parkTypes } from "../types/parkTypes";
 
-const BASE_URL = "http://localhost:4000/park/";
+const BASE_URL = "http://localhost:4000/park";
 
-export async function fetchAllParks() : Promise<parkTypes[] | void> {
+export async function fetchAllParks(): Promise<parkTypes[] | void> {
     try {
-        // const res = await axios.get(BASE_URL) as parkTypes[]
-        const res = await axios.get(BASE_URL) 
-        return res.data
+        console.log(BASE_URL);
         
+        const response = await axios.get(BASE_URL);
+        return response.data;
     } catch (error) {
-        console.log(error);
-        alert("some error,retry later")
-        // return []
-        
-    }    
+        console.error("Error fetching parks:", error);        
+        alert("An error occurred while fetching parks. Please try again later.");
+    }
 }
 
-export async function updateOccupied(id : number , newValue: boolean ): Promise<void> {
-
+export async function updateOccupied(id: number, newValue: boolean): Promise<void> {
     try {
-        const res =await axios.patch(BASE_URL + `/${id}`,{newValue})
-        if (res.status !== 200){
-            throw new Error("update returned with wrong status ");
-            
+        const response = await axios.patch(`${BASE_URL}/${id}`, {isTaken : newValue });
+        if (response.status !== 200) {
+            console.error("Error updating park:", response);
+            throw new Error("Update returned with an unexpected status");
         }
-        
     } catch (error) {
-        console.log(error);
-        alert("some error,retry later")
-        
+        console.error("Error updating park:", error);
+        alert("An error occurred while updating the park. Please try again later.");
     }
-    
 }

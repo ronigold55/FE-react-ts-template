@@ -4,27 +4,37 @@ import { parkTypes } from "./types/parkTypes";
 import Park from "./components/park/Park";
 
 function App() {
-    const [park,setParks] = useState<parkTypes[]>([])
+    const [parks, setParks] = useState<parkTypes[]>([])
 
-    useEffect(()=>{
-       fetchAllParks().then((res: parkTypes[] | void)=>{
-        // console.log(res);
-        if (res){
-        setParks(res)
-        }
+    useEffect(() => {
+        fetchAllParks().then((res: parkTypes[] | void) => {
+            // console.log(res);
+            if (res) {
+                setParks(res)
+            }
 
-       })
+        })
+    }, [])
 
-        // console.log(parks);
+    const toogleTaken = (id: number)=> {
+       const newParks = parks.map(park => 
+            park.id === id ? { ...park, isTaken: !park.isTaken } : park
+          );
+    setParks (newParks)
+
+    }
 
 
-    },[])
+    // const fetchParks = asunc ()=> {
+    //     if (park){
+    //         setParks (park)
+    //     }
+    // }
 
     return (
         <div>
             <h1> Hello To Pango </h1>
-            {/* {park.map((p)=> {return  <p>city:{p.city} - {p.isFree} </p> })} */}
-            {park.map((p)=> {return<Park park ={p}/>})}
+            {parks.map((p) => { return <Park key={p.id} park={p} toogleTaken = {toogleTaken}/> })}
 
         </div>
     );
