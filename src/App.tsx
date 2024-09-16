@@ -25,11 +25,7 @@ function App() {
     }
 
 
-    // const fetchParks = asunc ()=> {
-    //     if (park){
-    //         setParks (park)
-    //     }
-    // }
+    
 
     return (
         <div>
