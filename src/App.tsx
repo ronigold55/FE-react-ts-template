@@ -1,9 +1,19 @@
+import ServerList from './Components/ServerList/ServerList';
+import { Container, Typography, Box } from '@mui/material';
 
 function App() {
     return (
-        <div>
-            <h1> Hello React-Typescript template</h1>
-        </div>
+        <Container maxWidth="lg">
+            <Box sx={{ textAlign: 'center', my: 4 }}>
+                <Typography variant="h2" component="h1" gutterBottom>
+                    Servers Website
+                </Typography>
+            </Box>
+            <hr />
+            <main>
+                <ServerList />
+            </main>
+        </Container>
     );
 }
 
