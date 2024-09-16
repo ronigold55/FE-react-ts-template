@@ -1,32 +1,36 @@
-import { useEffect, useState } from "react"
-
-
-import Park from "./components/park/Park";
-import FilterHeader from "./components/filterHeader/FilterHeader";
+import { useEffect, useState } from "react";
 import { serversTypes } from "./types/serversTypes";
+import { getServers } from "./api/server";
+import Serverlist from "./Serverlist/Serverlist";
+
 
 function App() {
-
-    const [servers, setParks] = useState<serversTypes[]>([])
-    // const [filteredParks, setFilteredParks] = useState<serversTypes[]>([])
+    const [servers, setServers] = useState<serversTypes[]>([])
 
     useEffect(() => {
-        fetchParks()
+        getServers().then((res: serversTypes[] | void) => {
+            // console.log(res);
+            if (res) {
+                setServers(res)
+            }
+
+        })
     }, [])
 
-    const fetchParks = async (updateFiltered=true) => {
-        const parks = await fetchAllParks()
-        if (parks) {
-            setParks(parks);            
-            // setFilteredParks(parks);
-        }
+    const toggleOnline = (id: number)=> {
+       const newServers = servers.map(servers => 
+        servers.id === id ? { ...servers, statusOnline: !servers.statusOnline} : servers
+          );
+    setServers (newServers)
+
     }
+
+ 
 
     return (
         <div>
-            <h1> Hello To Park Search </h1>
-            <FilterHeader parks={parks} setFilteredParks={setFilteredParks}/>
-            {filteredParks.map((p) => { return <Park park={p} fetchParks= {fetchParks} /> })}
+            <h1> Hello To Pango </h1>
+            {servers.map((p) => { return <Serverlist key={p.id} server={p} toggleOnline = {toggleOnline}/> })}
 
         </div>
     );

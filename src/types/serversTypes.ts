@@ -7,6 +7,7 @@ export type serversTypes = {
     dateTime: number;    
     num: number;
     companyNameServer_id: number;
-    statusOnline: number;
+    statusOnline: boolean;
+    created : number;
 
 }
