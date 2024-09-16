@@ -18,10 +18,10 @@ const ServerCard: React.FC<props> = ({ server, onStatusToggle }) => {
     return (
         <Card
             sx={{
-                maxWidth: 345,
+                maxWidth: 500,
                 margin: 2,
                 bgcolor: 'background.paper',
-                border: '1px solid',
+                border: '3px solid blue',
                 borderColor: 'primary.main',
                 '&:hover': {
                     borderColor: 'secondary.main',
