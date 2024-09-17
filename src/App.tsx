@@ -25,7 +25,12 @@ function App() {
     }
 
 
+<<<<<<< HEAD
    
+=======
+    
+
+>>>>>>> a391b5420798e83b902f008d40c7c608ad97848d
     return (
         <div>
             <h1> Hello To Pango </h1>
