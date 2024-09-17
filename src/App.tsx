@@ -25,12 +25,7 @@ function App() {
     }
 
 
-    // const fetchParks = asunc ()=> {
-    //     if (park){
-    //         setParks (park)
-    //     }
-    // }
-
+   
     return (
         <div>
             <h1> Hello To Pango </h1>
