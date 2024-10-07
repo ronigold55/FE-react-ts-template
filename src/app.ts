@@ -1,5 +1,5 @@
 import express, { Request, Response } from "express"
-import handleSocketIO from "./sevices/socket-service";
+import handleSocketIO from "./services/socket-Services";
 
 const server = express();
 
