@@ -1,0 +1,127 @@
+/* Chat container */
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background-color: #ece5dd;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  /* Login screen styles */
+  .login-screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .username-input {
+    width: 250px;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+  }
+  
+  .connect-btn {
+    padding: 10px 20px;
+    background-color: #25d366;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+  }
+  
+  .connect-btn:hover {
+    background-color: #1bc159;
+  }
+  
+  /* Chat box styles */
+  .chat-box {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    height: 600px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+  }
+  
+  .messages {
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .message-bubble {
+    max-width: 80%;
+    margin-bottom: 10px;
+    padding: 10px 15px;
+    border-radius: 10px;
+    font-size: 14px;
+    line-height: 1.4;
+  }
+  
+  .outgoing {
+    align-self: flex-end;
+    background-color: #dcf8c6;
+    border-radius: 10px 10px 0 10px;
+  }
+  
+  .incoming {
+    align-self: flex-start;
+    background-color: #fff;
+    border-radius: 10px 10px 10px 0;
+    border: 1px solid #ccc;
+  }
+  
+  /* Input container */
+  .input-container {
+    display: flex;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border-top: 1px solid #ddd;
+  }
+  
+  .message-input {
+    flex: 1;
+    padding: 10px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    margin-right: 10px;
+    outline: none;
+  }
+  
+  .send-btn {
+    padding: 10px 20px;
+    background-color: #25d366;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+  }
+  
+  .send-btn:hover {
+    background-color: #1bc159;
+  }
+  
+  /* Disconnect button */
+  .disconnect-btn {
+    padding: 10px;
+    background-color: #ff5e5e;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    margin: 10px;
+    align-self: center;
+  }
+  
+  .disconnect-btn:hover {
+    background-color: #ff4343;
+  }
+  

@@ -1,8 +1,12 @@
+import Chat from "./components/chat/Chat";
+import socketService from "./services/socketService";
 
 function App() {
     return (
         <div>
-            <h1> Hello React-Typescript template</h1>
+            <h1> Welcome to Socket-demo</h1>
+
+            <Chat/>            
         </div>
     );
 }
