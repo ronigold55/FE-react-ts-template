@@ -52,6 +52,13 @@ function Register(): JSX.Element {
                 })} />
                 <span className="SpanMessage">{formState.errors.lastName?.message}</span>
 
+                <TextField label="email" type="email" variant="outlined" className="TextBox" {...register("email", {
+                    required: { value: true, message: "Missing email" },
+                    minLength: { value: 2, message: "Last name must be minimum 2 chars" },
+                    maxLength: { value: 100, message: "Last name can't exceed 100 chars" }
+                })} />
+                <span className="SpanMessage">{formState.errors.lastName?.message}</span>
+
                 <TextField label="Username" type="text" variant="outlined" className="TextBox" {...register("username", {
                     required: { value: true, message: "Missing username!" },
                     minLength: { value: 4, message: "Username must be minimum 4 chars" },

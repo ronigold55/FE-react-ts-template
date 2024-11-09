@@ -3,7 +3,7 @@ import "./Footer.css";
 function Footer(): JSX.Element {
     return (
         <div className="Footer">
-			<p>&copy; Rachel Rozental All right reserved {(new Date()).getFullYear()}</p> 
+			<p>&copy; Yehiel Gershon All right reserved {(new Date()).getFullYear()}</p> 
         </div>
     );
 }

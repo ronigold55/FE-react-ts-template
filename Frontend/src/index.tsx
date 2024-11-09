@@ -5,6 +5,8 @@ import Layout from './Components/LayoutArea/Layout/Layout';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import interceptorService from './Services/interceptorService';
+import myLogo from './Assets/Images/vacation.png';
+
 
 interceptorService.createInterceptor();
 

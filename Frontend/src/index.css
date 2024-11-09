@@ -5,14 +5,7 @@ body,
     padding: 0;
     text-align: center;
     height: 100%;
+    background-color: blue;
+    color: white;
 }
 
-/* body {
-    background-image: url("../src/Assets/Images/iStock_000017338523XSmall-1.jpg");
-    background-repeat: no-repeat;
-    background-position: right bottom;
-} */
-
-a {
-    color: blue;
-}

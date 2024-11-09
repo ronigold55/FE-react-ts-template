@@ -9,6 +9,8 @@
 .Login .TextBox, .Btn{
     width: 100%;
     margin: 20px 0;
+    color: white;
+    cursor: pointer;
 }
 
 .Login .Btn {
@@ -19,14 +21,14 @@
     margin: 10px;
     border: solid 1px rebeccapurple;
     border-radius: 5px;
-    color:rebeccapurple;
+    color:white;
     font-size: medium;
 } 
 
 .Login h2 {
     text-align: center;
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    color:rebeccapurple;
+    color:white;
 }
 
 .Login .SpanMessage {

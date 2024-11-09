@@ -1,7 +1,7 @@
 import path from "path";
 
 class Config {
-    public port = 3001;
+    public port = 3003;
     public mysqlHost = "localhost";
     public mysqlUser = "root";
     public mysqlPassword = "";
