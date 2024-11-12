@@ -7,6 +7,7 @@ class UserModel {
     public lastName: string;
     public username: string;
     public email: string;
+    public phoneNumber: number;
     public password: string;
     public roleId: RoleModel;
 
