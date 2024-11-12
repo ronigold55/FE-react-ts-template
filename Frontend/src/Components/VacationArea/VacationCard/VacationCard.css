@@ -17,6 +17,12 @@
     padding: 10px;
     border: solid 0.5px white;
 }
+.VacationCard .Card:hover {
+
+    border: solid 2px aqua;
+}
+
+
 
 .VacationCard .Destination {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -25,6 +31,7 @@
     text-align: left;
     margin-bottom: 0px;
     margin-top: 5px;
+    text-align: center;
 }
 
 .VacationCard .Description {
@@ -124,11 +131,12 @@
 }
 
 .VacationCard input:checked+.Slider {
-    background-color: blueviolet;
+    background-color: white;
+    color: blue;
 }
 
 .VacationCard input:checked+.Follow {
-    background-color: #ccc;
+    background-color: gray;
 }
 
 /* Rounded sliders */
@@ -137,11 +145,11 @@
 }
 
 .VacationCard .VacationCard .Follow {
-    background-color: #ccc;
+    background-color: blueviolet;
 }
 
 .VacationCard .VacationCard .Unfollow {
-    background-color: blueviolet;
+    background-color: grey;
 }
 
 .VacationCard .DivFollowCount {

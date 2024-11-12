@@ -18,7 +18,7 @@ function VacationList(): JSX.Element {
     const navigate = useNavigate();
     const [vacations, setVacations] = useState<VacationModel[]>([]);
     const [filterMyVacations, setFilterMyVacations] = useState<VacationModel[]>([]);
-    const totalItemsPerPage = 10;
+    const totalItemsPerPage = 6;
     const [page, setPage] = useState<number>(1);
     const [numOfPage, setNumOfPage] = useState<number>();
     const [checked, setChecked] = useState<boolean>(false);
@@ -66,7 +66,7 @@ function VacationList(): JSX.Element {
 
     return (
         <div className="VacationList">
-            <h1>Obser Vacations</h1>
+            <h1>Our holidays offers for  your vacations </h1>
 
             <div className="AdminOptionsDiv">
             {authService.isAdmin() && <>
@@ -75,10 +75,25 @@ function VacationList(): JSX.Element {
             </>}
             </div>
 
-            {!authService.isAdmin() && <>
-                <Checkbox {...label} icon={<FavoriteBorder />} color="secondary" checkedIcon={<Favorite />} checked={checked} onChange={filterVacations} className="CheckBoxFilter" />
+            {/* {!authService.isAdmin() && <>
+                <Checkbox {...label} icon={<FavoriteBorder />} color:white checkedIcon={<Favorite />} checked={checked} onChange={filterVacations} className="CheckBoxFilter" />
                 <p className="MyVacations">My Vacations</p>
-            </>}
+            </>} */}
+            {!authService.isAdmin() && (
+    <>
+        <Checkbox 
+            {...label} 
+            icon={<FavoriteBorder />} 
+            color="success" 
+            checkedIcon={<Favorite />} 
+            checked={checked} 
+            onChange={filterVacations} 
+            className="CheckBoxFilter" 
+        />
+        <p className="MyVacations">My Vacations</p>
+    </>
+)}
+
             
             {checked && filterMyVacations.slice((page - 1) * totalItemsPerPage, page * totalItemsPerPage).map(v => { return (<VacationCard key={v.vacationId} vacation={v} />) })}
             {!checked && vacations.slice((page - 1) * totalItemsPerPage, page * totalItemsPerPage).map(vac => { return (<VacationCard  key={vac.vacationId} vacation={vac} />) })}

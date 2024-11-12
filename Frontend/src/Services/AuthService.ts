@@ -68,6 +68,23 @@ class AuthService {
 
 }
 
+// // AuthService.ts
+// async function resetPassword() {
+//     // Send credentials to backend:
+//     const response = await axios.post<string>(`${appConfig.authUrl}/login`, credentials);
+
+    // Extract token:
+//     const token = response.data;
+
+//     // Save token in redux global state: 
+//     const action: AuthAction = { type: AuthActionType.Register, payload: token };
+//     authStore.dispatch(action);
+// }
+    // Implement the API call to send a password reset email
+    // Example: await httpService.post("/auth/reset-password", { email });
+// }
+
+
 const authService = new AuthService();
 
 export default authService;
