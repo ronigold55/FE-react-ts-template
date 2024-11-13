@@ -7,6 +7,7 @@ import vacationService from "../../../Services/VacationService";
 import VacationCard from "../VacationCard/VacationCard";
 import AssessmentIcon from '@mui/icons-material/Assessment';
 import AddIcon from '@mui/icons-material/Add';
+import { Archive } from "@mui/icons-material";
 import Checkbox from '@mui/material/Checkbox';
 import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
 import Favorite from '@mui/icons-material/Favorite';
@@ -18,7 +19,7 @@ function VacationList(): JSX.Element {
     const navigate = useNavigate();
     const [vacations, setVacations] = useState<VacationModel[]>([]);
     const [filterMyVacations, setFilterMyVacations] = useState<VacationModel[]>([]);
-    const totalItemsPerPage = 6;
+    const totalItemsPerPage = 8;
     const [page, setPage] = useState<number>(1);
     const [numOfPage, setNumOfPage] = useState<number>();
     const [checked, setChecked] = useState<boolean>(false);
@@ -72,6 +73,7 @@ function VacationList(): JSX.Element {
             {authService.isAdmin() && <>
                 <NavLink to="/vacations/new"><AddIcon />Add Vacation</NavLink>
                 <NavLink to="/vacations/charts"><AssessmentIcon fontSize="medium" />Reports</NavLink>
+                <NavLink to="/vacations/charts"><Archive fontSize="medium" />csv.file</NavLink>
             </>}
             </div>
 

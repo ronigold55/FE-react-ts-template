@@ -4,6 +4,7 @@
     text-align: center;
     display: inline-block;
     margin: 50px auto;
+    color: white;
 }
 
 .Login .TextBox, .Btn{
