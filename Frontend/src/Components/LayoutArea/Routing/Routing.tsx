@@ -7,6 +7,7 @@ import Register from "../../AuthArea/Register/Register";
 import VacationList from "../../VacationArea/VacationList/VacationList";
 import PageNotFound from "../PageNotFound/PageNotFound";
 import FollowersChart from "../../AdminArea/Charts/FollowersChart";
+// import ExportToCSV from "../../AdminArea/Csv/ExportToCSV";
 
 
 function Routing(): JSX.Element {
@@ -21,6 +22,7 @@ function Routing(): JSX.Element {
                 <Route path="/vacations/new" element={<AddVacation/>} />
                 <Route path="/vacations/edit/:vacationId" element={<EditVacation/>} />
                 <Route path="/vacations/charts" element={<FollowersChart/>} />
+                {/* <Route path="/vacations/charts" element={<ExportToCSV/>} /> */}
                 <Route path="/" element={<Navigate to="/vacations" />} />
                 <Route path="*" element={<PageNotFound />} />
             </Routes>
